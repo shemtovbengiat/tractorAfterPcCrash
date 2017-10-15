@@ -23,6 +23,7 @@ int lastbtm_dState =0;
 int drivePedalState = 0;      // Foot Pedal for drive FRW. & REV.
 int lastDrivePedalState =0;
 
+long lastTime = 0;
 
 void readBottomsIni ()  // ---   initionlize in SETUP routine ----     
 {
@@ -42,17 +43,17 @@ void readBottomsIni ()  // ---   initionlize in SETUP routine ----
 void readBottoms ()         
 {
 // --------------------------------------------- btm  START ENGINE -MOTOR ON-------------------------
-    btmStartState = digitalRead(btmStart);
-    if (btmStartState != lastbtmStartState) 
-      {
-        if (btmStartState == LOW) 
-          {
-            Serial.println(" [ START  ] ");
-            delay(20);
-            motorOn =! motorOn;
-          }
-      }
-    lastbtmStartState = btmStartState;
+	btmStartState = digitalRead(btmStart);
+	if (btmStartState != lastbtmStartState)
+	{
+		if (btmStartState == LOW && (lastTime + 100) < millis())
+		{
+			lastTime = millis();
+			Serial.println(" [ START  ] ");
+			motorOn = !motorOn;
+		}
+	}
+	lastbtmStartState = btmStartState;
 
 // ----------------------------  ------------------ btm HORN -HORN PUSHED-------------------------
     btmHornState = digitalRead(btmHorn);

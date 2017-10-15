@@ -63,7 +63,7 @@ void lightValves ();
 void action();
 void turnIni();
 void vinkers(bool turnLOn, bool turnROn, bool turnFast); 
-void turnLights();
+void turnLights(bool L, bool R);
 void neopixleIni();
 void driveIni();                   
 //void drive(int leftMotor, int dML__en_l, int dML_pwm_l, int dML_pwm_r);                   

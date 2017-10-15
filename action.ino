@@ -14,7 +14,7 @@
   */   
   if ( motorOn==0 )         // start bottom not pushed  yet.. - DO Nothing
     {
-      //musicPlayer.stopPlaying()        ---- האם נכון?
+      //musicPlayer.stopPlaying()        //---- האם נכון?
       motorValves(0,0);                        // 2 leds in motor (x,y)( x- 1=blink leds 0=off,  y- 1= fast blink 0=slow blink 
       //motorNeopixle(0,0);                    // 42 neopixle on board thee motor base (1,2)(1- 1=blink  0=off, 2- 1= fast blink 0=slow blink
       pumps(0,0);                              // water and air pumps fan motor (0=off 1=on slow, 1=fast 0=slow)
