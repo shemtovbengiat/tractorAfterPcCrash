@@ -16,7 +16,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="traktor.ino" />
-    <None Include="mp3_player.ino" />
+    <None Include="action.ino" />
+    <None Include="drive.ino" />
+    <None Include="mp3.ino" />
+    <None Include="neopixle.ino" />
+    <None Include="pumps.ino" />
+    <None Include="read_Bottoms.ino" />
+    <None Include="Turn.ino" />
+    <None Include="valves.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.traktor.vsarduino.h">

@@ -55,6 +55,7 @@ freeline/
 freeline_project_description.json
 
 /.vs/traktor/v14
+/.vs/traktor/v15
 /Debug
 /Release
 /__vm

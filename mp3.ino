@@ -8,7 +8,11 @@ bool isMP3On = false;
 
 void printDirectory(File dir, int numTabs);
 
-void mp3Ini() {
+
+
+ // ---- mp3   Initialization  --------
+void mp3Ini() {                    
+
 #if defined(DEBUG)
 	Serial.println("MP3 inishlizing");
 #endif
@@ -26,7 +30,7 @@ void mp3Ini() {
 
 	if (!SD.begin(CARDCS)) {
 #if defined(DEBUG)
-		Serial.println(F("SD failed, or not present"));
+		Serial.println("SD failed, or not present");
 #endif
 
 		isMP3On = false;
@@ -41,9 +45,11 @@ void mp3Ini() {
 #endif
 
 		// Set volume for left, right channels. lower numbers == louder volume!
-		musicPlayer.setVolume(1, 1);
-		musicPlayer.useInterrupt(VS1053_FILEPLAYER_TIMER0_INT);
-	}
+		musicPlayer.setVolume(15,15);
+ // Timer interrupts are not suggested, better to use DREQ interrupt!
+  //musicPlayer.useInterrupt(VS1053_FILEPLAYER_TIMER0_INT); // timer int
+		musicPlayer.useInterrupt(VS1053_FILEPLAYER_TIMER0_INT);  ///   check with mickel  no to use TIMER0_INT  !!!!!!!!!!!!!!!!!!!!!!
+	}//---END of mp# inisilaztion routine
 
 }
 
@@ -51,19 +57,34 @@ void mp3Ini() {
 this is to start a sound,  give it the path to the file
 */
 void playSound(char* path)
-{
-#if defined(DEBUG)
-	Serial.print("playing file: ");
-	Serial.println(path);
-#endif
-	// Start playing a file, then we can do stuff while waiting for it to finish
-	if (!musicPlayer.startPlayingFile(path)) {
-		Serial.println("Could not open file track001.mp3");
-		while (1);
-	}
-	Serial.println(F("Started playing"));
+    {
+      #if defined(DEBUG)
+      	Serial.print("playing file: ");
+      	Serial.println(path);
+      #endif
+    	// Start playing a file, then we can do stuff while waiting for it to finish
+    	if (!musicPlayer.startPlayingFile(path)) {
+    		Serial.println("Could not open file track02.mp3");
+    		while (1);                                          //  stucks the program!!!! need RESET
+    	}
+    	Serial.println("Started playing");
+//     return;
+    }
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /// File listing helper
