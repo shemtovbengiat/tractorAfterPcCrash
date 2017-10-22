@@ -24,7 +24,7 @@
 #define neoExhaostPin  11     //data pin for exhaost NeoPixel ring - PWM
 
 #define turnL          47     // turn signal left pin to activate turn relay
-#define turnR          32     // turn signal right pin to activate turn relay
+#define turnR          48     // turn signal right pin to activate turn relay
 
 #define ldrmEn1         2      // left DRIVE motor
 #define ldrmEn2         3
@@ -53,17 +53,21 @@
 
 void mp3Ini();
 void playSound(char* path);
-void motorValvesIni();
-void motorValves(bool valvesOn, bool valvesFast);
+void valvesIni();
+void valves(bool valvesOn, bool valvesFast);
 void readBottomsIni ();
 void readBottoms ();
 void pumpsIni();
 void pumps(bool pumpsOn, int pumpsFast);
-void lightValves ();  
 void action();
 void turnIni();
-void vinkers(bool turnLOn, bool turnROn, bool turnFast); 
+void turnLights(bool turnLOn, bool turnROn, bool turnFast); 
 void turnLights(bool L, bool R);
 void neopixleIni();
-void driveIni();                   
-//void drive(int leftMotor, int dML__en_l, int dML_pwm_l, int dML_pwm_r);                   
+
+void driveIni();
+void Drive(int l, int r, int driveSpeed);
+void stopMotorL();
+void stopMotorR();
+void driveForwardL(int pwm);
+void driveForwardR(int pwm);

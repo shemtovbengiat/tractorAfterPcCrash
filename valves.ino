@@ -16,7 +16,7 @@ long valve1Timing = 0;                // interval at which to blink (10 fast 200
 long valve2Timing = 0;            
 
 // ----valves   Initialization  in SETUP routine--------
-void motorValvesIni()                   
+void valvesIni()                   
   {                    
     pinMode(valve1, OUTPUT);              // set the motor  Valves digital pin as output:
     pinMode(valve2, OUTPUT);
@@ -27,7 +27,7 @@ void motorValvesIni()
 
 // ------------------- Motor Valves routine  -----------------------
 
-void motorValves(bool valvesOn, bool valvesFast)            
+void valves(bool valvesOn, bool valvesFast)            
  {
   bool _valvesOn = valvesOn;                     // for internal use                   
   bool _valvesFast = valvesFast;
@@ -59,36 +59,30 @@ void motorValves(bool valvesOn, bool valvesFast)
 
 
 
-void lightValves ()   // ---- light valve sub routine according to fast=1 or slow=0 (1/2 speed)
-  {
-  unsigned long current1Millis = millis();
-  if (current1Millis - previous1Millis >= valve1Timing)
-    {
-      previous1Millis = current1Millis;   // save the last time you blinked the LED
-      // if the LED is off turn it on and vice-versa  --- valve 1 *********************************
-      if (valve1State == LOW)
-        {
-          valve1State = HIGH;
-        } else {
-                valve1State = LOW;
-                }
-      digitalWrite(valve1, valve1State);
-    }
-  
-  unsigned long current2Millis = millis();            //  valve 2 *********************************
-  if (current2Millis - previous2Millis >= valve2Timing)
-    {
-       previous2Millis = current2Millis;   // save the last time you blinked the LED
-       if (valve2State == LOW)
-       {
-          valve2State = HIGH;
-       } else {
-                valve2State = LOW;
-              }
-    digitalWrite(valve2, valve2State);   // set the LED with the ledState of the variable
-    }
-    return;
-  }  //  ----  end of light valves routine 
+void lightValves()   // ---- light valve sub routine according to fast=1 or slow=0 (1/2 speed)
+{
+	unsigned long current1Millis = millis();
+	if (current1Millis - previous1Millis >= valve1Timing) {
+		previous1Millis = current1Millis;   // save the last time you blinked the LED
 
+	  // if the LED is off turn it on and vice-versa  --- valve 1 *********************************
+		if (valve1State == LOW) valve1State = HIGH;
+		else
+			valve1State = LOW;
+		digitalWrite(valve1, valve1State);
+	}
 
+	unsigned long current2Millis = millis();            //  valve 2 *********************************
+	if (current2Millis - previous2Millis >= valve2Timing) {
+		previous2Millis = current2Millis; // save the last time you blinked the LED
 
+		if (valve2State == LOW) {
+			valve2State = HIGH;
+		}
+		else valve2State = LOW;
+		digitalWrite(valve2, valve2State);   // set the LED with the ledState of the variable
+
+//	return;
+ //  ----  end of light valves routine
+	}
+}

@@ -1,10 +1,29 @@
 /*
 befor trying to play muisc be sure that the mp3On flag is true "isMP3On"
-*/
+
+// Alternately, we can just play an entire file at once
+// This doesn't happen in the background, instead, the entire
+// file is played and the program will continue when it's done!
+musicPlayer.playFullFile("track001.ogg");
+
+// Start playing a file, then we can do stuff while waiting for it to finish
+if (! musicPlayer.startPlayingFile("track001.mp3")) {
+Serial.println("Could not open file track001.mp3");
+while (1);
+}
+Serial.println(F("Started playing"));
+
+while (musicPlayer.playingMusic) {
+// file is now playing in the 'background' so now's a good time
+// to do something else like handling LEDs or buttons :)
+Serial.print(".");
+delay(1000);
+}
+Serial.println("Done playing music");
+}*/
 
 Adafruit_VS1053_FilePlayer musicPlayer = Adafruit_VS1053_FilePlayer(SHIELD_RESET, SHIELD_CS, SHIELD_DCS, DREQ, CARDCS);
 
-bool isMP3On = false;
 
 void printDirectory(File dir, int numTabs);
 
@@ -23,6 +42,7 @@ void mp3Ini() {
 		isMP3On = false;
 		return;
 	}
+
 #if defined(DEBUG)
 	Serial.println("VS1053 found");
 #endif
@@ -37,7 +57,7 @@ void mp3Ini() {
 		return;
 	}
 
-	isMP3On = true;
+	isMP3On = true;  //  initialise the music player and SD in SETUP routine
 	// list files
 	if (isMP3On) {
 #if defined(DEBUG)
@@ -56,7 +76,7 @@ void mp3Ini() {
 /*
 this is to start a sound,  give it the path to the file
 */
-void playSound(char* path)
+void playSound (char* path)
     {
       #if defined(DEBUG)
       	Serial.print("playing file: ");
@@ -68,7 +88,7 @@ void playSound(char* path)
     		while (1);                                          //  stucks the program!!!! need RESET
     	}
     	Serial.println("Started playing");
-//     return;
+     return;
     }
 
 

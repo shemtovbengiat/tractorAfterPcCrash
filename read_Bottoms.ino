@@ -3,25 +3,25 @@ reads all the bottoms and ?  ???  set an interupt to get attention from main rou
 */
 
 bool btmStartState = 0;       // Strat / Stop
-bool lastbtmStartState =0;
-int btmHornState = 0;         // horn
-int lastbtmHornState =0;
-int wheelBtm1State = 0;       // wheel bottom # 1 clockwise from 12 oclock
-int lastWheelBtm1State =0;
-int wheelBtm2State = 0;       // wheel bottom # 1 clockwise from 12 oclock
-int lastWheelBtm2State =0;
-int wheelBtm3State = 0;       // wheel bottom # 1 clockwise from 12 oclock
-int lastWheelBtm3State =0;
-int btm_lState = 0;           // Left turn signal
-int lastbtm_lState =0;
-int btm_rState = 0;           // Right turn signal
-int lastbtm_rState =0;
-int btm_uState = 0;           // Up = Forward drive
-int lastbtm_uState =0;
-int btm_dState = 0;           // Down = Reverse drive
-int lastbtm_dState =0;
-int drivePedalState = 0;      // Foot Pedal for drive FRW. & REV.
-int lastDrivePedalState =0;
+bool lastBtmStartState =0;
+bool btmHornState = 0;         // horn
+bool lastBtmHornState =0;
+bool wheelBtm1State = 0;       // wheel bottom # 1 clockwise from 12 oclock
+bool lastWheelBtm1State =0;
+bool wheelBtm2State = 0;       // wheel bottom # 1 clockwise from 12 oclock
+bool lastWheelBtm2State =0;
+bool wheelBtm3State = 0;       // wheel bottom # 1 clockwise from 12 oclock
+bool lastWheelBtm3State =0;
+bool btm_lState = 0;           // Left turn signal
+bool lastBtm_lState =0;
+bool btm_rState = 0;           // Right turn signal
+bool lastBtm_rState =0;
+bool btm_uState = 0;           // Up = Forward drive
+bool lastBtm_uState =0;
+bool btm_dState = 0;           // Down = Reverse drive
+bool lastBtm_dState =0;
+bool drivePedalState = 0;      // Foot Pedal for drive FRW. & REV.
+bool lastDrivePedalState =0;
 
 long lastTime = 0;
 
@@ -39,12 +39,11 @@ void readBottomsIni ()  // ---   initionlize in SETUP routine ----
     pinMode(drivePedal,INPUT_PULLUP);    
 }  // --- END of readBottoms INI rotine
 
-// ----  Called from whithin LOOP routine
-void readBottoms ()         
+void readBottoms ()         // ----  Called from whithin LOOP routine
 {
 // --------------------------------------------- btm  START ENGINE -MOTOR ON-------------------------
 	btmStartState = digitalRead(btmStart);
-	if (btmStartState != lastbtmStartState)
+	if (btmStartState != lastBtmStartState)
 	{
 		if (btmStartState == LOW && (lastTime + 100) < millis())
 		{
@@ -53,11 +52,11 @@ void readBottoms ()
 			motorOn = !motorOn;
 		}
 	}
-	lastbtmStartState = btmStartState;
+	lastBtmStartState = btmStartState;
 
 // ----------------------------  ------------------ btm HORN -HORN PUSHED-------------------------
     btmHornState = digitalRead(btmHorn);
-    if (btmHornState != lastbtmHornState) 
+    if (btmHornState != lastBtmHornState) 
       {
         if (btmHornState == LOW) 
           {
@@ -66,12 +65,12 @@ void readBottoms ()
             hornPushed = random (0,10);
           }
       }
-        lastbtmHornState = btmHornState;
+        lastBtmHornState = btmHornState;
 
 // -------------------------------------------------- btm  RIGHT SIGNAL- -turnROn------------------------
 
     btm_rState = digitalRead(btm_r);
-    if (btm_rState != lastbtm_rState)
+    if (btm_rState != lastBtm_rState)
       {
         if (btm_rState == LOW) 
           {
@@ -80,12 +79,12 @@ void readBottoms ()
             turnROn = !turnROn;         // toggel switch !!!
           }
       }
-        lastbtm_rState = btm_rState;
+        lastBtm_rState = btm_rState;
         
 // -------------------------------------------------- btm  LEFT SIGNAL-turnLOn-------------------------
 
       btm_lState = digitalRead(btm_l);
-      if (btm_lState != lastbtm_lState) 
+      if (btm_lState != lastBtm_lState) 
         {
           if (btm_lState == LOW)  
             {
@@ -94,11 +93,11 @@ void readBottoms ()
               turnLOn = !turnLOn;       // toggel switch !!!
             }
         }
-      lastbtm_lState = btm_lState;
+      lastBtm_lState = btm_lState;
  
 // ------------------------------------------- btm   DOWN = REVERSE --reverseOn------------------------
       btm_dState = digitalRead(btm_d);
-      if (btm_dState != lastbtm_dState)
+      if (btm_dState != lastBtm_dState)
         {
           if (btm_dState == LOW) 
             {
@@ -107,11 +106,11 @@ void readBottoms ()
               reverseOn = !reverseOn;         // toggel switch !!!
              }
         }
-      lastbtm_dState = btm_dState;
+      lastBtm_dState = btm_dState;
  
 // ------------------------------------------- btm  UP = FORWARD ---forwardOn-----------------------
       btm_uState = digitalRead(btm_u);
-      if (btm_uState != lastbtm_uState)
+      if (btm_uState != lastBtm_uState)
         {
           if (btm_uState == LOW) 
             {
@@ -120,7 +119,7 @@ void readBottoms ()
               forwardOn =!forwardOn;          // toggel switch !!!
              }
         }
-      lastbtm_uState = btm_uState;
+      lastBtm_uState = btm_uState;
 
 // -------------------------------------------------- WHEEL BOTTOM # 1  ----wheelBottom1Pushed----------------------
 
@@ -131,7 +130,7 @@ void readBottoms ()
             {
               Serial.println(" [ WHEEL SW  1  ] ");
             
-              wheelBottom1Pushed = random( 1,11);         // random switch !!!!!!!!!!!!!!!!!!!!
+              weelBtm1Pushed = random( 1,11);         // random switch !!!!!!!!!!!!!!!!!!!!
             }
         }
       lastWheelBtm1State = wheelBtm1State;
@@ -145,7 +144,7 @@ void readBottoms ()
             {
               Serial.println(" [ WHEEL SW  2  ] ");
           
-              wheelBottom2Pushed = random( 2,12);       // random switch !!!!!!!!!!!!!!!!!!!!
+              weelBtm2Pushed = random( 2,12);       // random switch !!!!!!!!!!!!!!!!!!!!
             }
         }
       lastWheelBtm2State = wheelBtm2State;
@@ -159,7 +158,7 @@ void readBottoms ()
             {
               Serial.println(" [ WHEEL SW  3  ] ");
              
-              wheelBottom3Pushed = random( 3,13);       // random switch !!!!!!!!!!!!!!!!!!!!
+              weelBtm3Pushed = random( 3,13);       // random switch !!!!!!!!!!!!!!!!!!!!
             }
         }
       lastWheelBtm3State = wheelBtm3State;
@@ -179,7 +178,7 @@ void readBottoms ()
         }
       lastDrivePedalState = drivePedalState;
       
-      if (drivePedalOn = 1 && motorOn==1 && (forwardOn==1 || reverseOn==1))
+      if (drivePedalOn == 1 && motorOn==1 && (forwardOn==1 || reverseOn==1))
         {
           driveEnable=1;    // S A F A T Y  fleg !!!
         }

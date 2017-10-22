@@ -21,7 +21,7 @@ void turnIni()
 
 
  // --------TURN SISNALS  routine  ---------------------
-void vinkers(bool turnLOn, bool turnROn, bool turnFast)      // turnfast -( 0=slowe 1=fast )
+void turnLights(bool turnLOn, bool turnROn, bool turnFast)      // turnfast -( 0=slowe 1=fast )
  {
     bool _turnLOn = turnLOn;                     // for internal use                   
     bool _turnROn = turnROn;                     // for internal use                   
@@ -30,20 +30,21 @@ void vinkers(bool turnLOn, bool turnROn, bool turnFast)      // turnfast -( 0=sl
    if (_turnLOn==0 && _turnROn==0)
       {
         turnLRTiming = 0;                  // interval at which to blink (10 fast 200 slowest in milliseconds)
-        digitalWrite(turnL, 1);            
-        digitalWrite(turnR, 1);               // 1 = RELAY OFF ,pin at 0 activate relay by going ground !!!!!!!!!!!!
-      }
+        //digitalWrite(turnL, 1);            
+        //digitalWrite(turnR, 1);               // 1 = RELAY OFF ,pin at 0 activate relay by going ground !!!!!!!!!!!!
+		turnLights(_turnLOn, _turnROn);
+   }
       else if (_turnFast==0)  // motor on slow valves 
               {
-                turnLRTiming = 1400;                 //  slow 200 milliseconds)
+                turnLRTiming = 900;                 //  slow 200 milliseconds)
                 turnLights (_turnLOn, _turnROn);                     // service routine next peragaph 
               }
               else if ( _turnFast==1)
                   {
-                    turnLRTiming = 700;               //  fast 60 milliseconds)
+                    turnLRTiming = 400;               //  fast 60 milliseconds)
                     turnLights (_turnLOn, _turnROn);                     // service routine next peragaph 
                   }
-    return;                                             // do nothing with the leds go back empty
+   // return;                                             // do nothing with the leds go back empty
  }
 
 

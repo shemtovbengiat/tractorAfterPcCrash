@@ -11,6 +11,8 @@ Adafruit_DCMotor *fanMotor = PUMPS.getMotor(2);
 Adafruit_DCMotor *waterPump = PUMPS.getMotor(3);     // Select which 'port' M2, M3 or M4. 
 Adafruit_DCMotor *airPump = PUMPS.getMotor(4);
 
+int hiRpmMaxSpeed = 250;
+int loRpmMinSpeed = 80;
 
 // --- Initilatziotion Routine from SETUP 
 void pumpsIni()   
@@ -34,20 +36,20 @@ void pumps(bool pumpsOn, int pumpsFast)
    if (pumpsOn==1 && pumpsFast==1)
       {
         waterPump->run(FORWARD);
-        waterPump->setSpeed(200);  
+        waterPump->setSpeed(hiRpmMaxSpeed);
         airPump->run(FORWARD);
-        airPump->setSpeed(250);  
+        airPump->setSpeed( hiRpmMaxSpeed);
         fanMotor->run(FORWARD);
-        fanMotor->setSpeed(250);  
+        fanMotor->setSpeed( hiRpmMaxSpeed);
       }
       if (pumpsOn==1 && pumpsFast==0)  // motor on slow valves 
         {
           waterPump->run(FORWARD);
-          waterPump->setSpeed(80);  
+          waterPump->setSpeed(loRpmMinSpeed);
           airPump->run(FORWARD);
-          airPump->setSpeed(80);  
+          airPump->setSpeed(loRpmMinSpeed);
           fanMotor->run(FORWARD);
-          fanMotor->setSpeed(80);  
+          fanMotor->setSpeed(loRpmMinSpeed);
         }
         if (pumpsOn==0)
           {
