@@ -52,8 +52,8 @@ void Drive(int l, int r, int driveSpeed)
 	else if (l == 1) driveForwardL(driveSpeed);
 	//else if (l == 2) driveReverseR(driveSpeed);
 
-	if (r == 0)	stopMotorR();
-	else if (r == 1) driveForwardR(driveSpeed);
+	//if (r == 0)	stopMotorR();
+	//else if (r == 1) driveForwardR(driveSpeed);
 	//else if (r == 2) driveReverseR(driveSpeed);
 
 
