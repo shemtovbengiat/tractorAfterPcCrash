@@ -1,6 +1,7 @@
 /*
- Turns on and off 2 arrows left and right (Vinkers)
- without using the delay() function.  
+ TURN section.
+ Turns on and off 2 arrows left and right turn/warning lights(Vinkers).
+ Without using the delay() function, based on code from VALVES routine. 
  */
 
 int turnLState = 0;                  // ledState used to set the LED
@@ -9,56 +10,51 @@ int turnRState = 0;
 unsigned long previousLMillis = 0;      // will store last time LED was updated
 unsigned long previousRMillis = 0;        
 
-long turnLRTiming = 0;                // interval at which to blink (10 fast 200 slowest in milliseconds)
+long turnLRTiming = 500;                // interval at which to blink (10 fast 200 slowest in milliseconds)
 
 // ----Turn -  Initialization  in SETUP routine--------
-void turnIni()                   
-  {                    
-    pinMode(turnL, OUTPUT);              // set the motor  Valves digital pin as output:
-    pinMode(turnR, OUTPUT);
-  } //--- END of Ini routine 
+void turnIni()
+{
+	pinMode(turnL, OUTPUT);              // set the motor  Valves digital pin as output:
+	pinMode(turnR, OUTPUT);
+	digitalWrite(turnL, 0);
+	digitalWrite(turnR, 0);
+} //--- END of Ini routine 
 
 
 
  // --------TURN SISNALS  routine  ---------------------
-void turnLights(bool turnLOn, bool turnROn, bool turnFast)      // turnfast -( 0=slowe 1=fast )
+void turn()   //      Lights(bool turnLOn, bool turnROn, bool turnFast)      // turnfast -( 0=slowe 1=fast )
  {
-    bool _turnLOn = turnLOn;                     // for internal use                   
-    bool _turnROn = turnROn;                     // for internal use                   
-    bool _turnFast = turnFast;
+ //   bool _turnLOn = turnLOn;                     // for internal use                   
+   // bool _turnROn = turnROn;                     // for internal use                   
+      //bool _turnFast = turnFast;
   
-   if (_turnLOn==0 && _turnROn==0)
+   if (turnLOn==0 && turnROn==0)
       {
-        turnLRTiming = 0;                  // interval at which to blink (10 fast 200 slowest in milliseconds)
-        //digitalWrite(turnL, 1);            
-        //digitalWrite(turnR, 1);               // 1 = RELAY OFF ,pin at 0 activate relay by going ground !!!!!!!!!!!!
-		turnLights(_turnLOn, _turnROn);
-   }
-      else if (_turnFast==0)  // motor on slow valves 
+//        turnLRTiming = 0;                  // interval at which to blink (10 fast 200 slowest in milliseconds)
+        digitalWrite(turnL, 0);            
+        digitalWrite(turnR, 0);               // 1 = RELAY OFF ,pin at 0 activate relay by going ground !!!!!!!!!!!!
+	  }
+ /*     else if (_turnFast==0)  // motor on slow valves 
               {
                 turnLRTiming = 900;                 //  slow 200 milliseconds)
-                turnLights (_turnLOn, _turnROn);                     // service routine next peragaph 
+                turnAction (_turnLOn, _turnROn);                     // service routine next peragaph 
               }
               else if ( _turnFast==1)
                   {
                     turnLRTiming = 400;               //  fast 60 milliseconds)
-                    turnLights (_turnLOn, _turnROn);                     // service routine next peragaph 
+                    turnAction (_turnLOn, _turnROn);                     // service routine next peragaph 
                   }
-   // return;                                             // do nothing with the leds go back empty
- }
+   // return;  */                                           // do nothing with the leds go back empty
+ 
 
 
 
-
-
-
-
-
-
-void turnLights (bool L, bool R)   // ---- turn signal and warning light (togethr) sub routine according to fast=1 or slow=0 
-  {
-    if (L==1)
-      {
+    // left turn first allways
+	
+   if (turnLOn == 1 && turnROn == 0)
+		{
         unsigned long currentLMillis = millis();
         if (currentLMillis - previousLMillis >= turnLRTiming)
           {
@@ -73,8 +69,11 @@ void turnLights (bool L, bool R)   // ---- turn signal and warning light (togeth
           }
         digitalWrite(turnL, turnLState);
       }
-     
-    if (R==1)
+	else digitalWrite(turnL, 0);
+
+	// right turn 
+	if (turnLOn == 0 && turnROn == 1)
+
       {
         unsigned long currentRMillis = millis();            //  valve 2 *********************************
         if (currentRMillis - previousRMillis >= turnLRTiming)
@@ -89,7 +88,7 @@ void turnLights (bool L, bool R)   // ---- turn signal and warning light (togeth
           }
           digitalWrite(turnR, turnRState);   // set the LED with the ledState of the variable
       }
-  }// --- END of TURNlight  routine 
+	else digitalWrite(turnR, 0);
+} // --- END of TURNlight  routine 
 
-
-
+ 

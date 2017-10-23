@@ -1,13 +1,16 @@
 /*
-main program include of libreries nesesery, declare global variables, set up individual setup routins and the in the loop routin we do:
-1. read_bottoms - whitch checks every loop all the input bottoms and sets variables accordngly.
-2. action - here we act upon "every" (ha ha..) possible variables combinations to make the tractor as close as to a modern tractor.
+TRACTOR main program.
+Include libreries, global variables declartion, SETUP loop and the main LOOP routin.
+1. Read_bottoms - whitch checks every loop all the input bottoms and sets variables accordngly.
+2. Action - here we act upon "every" (ha ha..) possible variables combinations to make the tractor as close as to a modern tractor.
+3. Turn - turn singnal while driving and at all time WARNING lights.
+*/
 
-qustion to mikel
+/*
+Qustion to mikel
 1. how to play random file from 4 libreries in sd card \1\xxx \2\xxx...?
 2. interupt timer1 or regular for mp3 play music in the backround?
-3. beep at setup gives error mp3 not declared
-4. start > fast -horn >off> start> stay in fast?
+
 }*/
 
 
@@ -47,8 +50,10 @@ volatile bool driveEnable = 0;         // safty flag variable first D or R and o
 volatile bool drivingFrw = 0;          // safty flag variable first joystick Forward and onlt then pedal will allow driving FOWARD.!!  set at action.ino routine
 volatile bool drivingRev = 0;          // safty flag variable first joystick Reverse and onlt then pedal will allow driving REverse.!!  set at action.ino routine
 
-volatile bool isMP3On = false;
+volatile bool isMP3On = 0;
 volatile int  driveSpeed = 100;				// to be set by the speed encoder potentiometer 0 - 255 full speed
+
+int songCount = 0;
 
 //  -------   S E T U  P      ROUTINE  -------------------
 void setup() 
@@ -68,15 +73,18 @@ void setup()
   driveIni();
   neopixleIni();
 
-//playSound("TRACK02.MP3");
+  valves(0, 0);                        // 2 leds in motor (x,y)( x- 1=blink leds 0=off,  y- 1= fast blink 0=slow blink 
+  pumps(0, 0);					    // water and air pumps fan motor (0=off 1=on slow, 1=fast 0=slow)
+
+
+	playSound("TRACK02.MP3");
 }//---END SETUP routine  ---
   
 //  -------   LOOP     ROUTINE  ---------------
 void loop() 
-{
-	
-  readBottoms();
-  action();
-
-}//---END of loop routine  -----
+	{
+	  readBottoms();
+	  turn();
+	  action();
+	}//---END of loop routine  -----
 

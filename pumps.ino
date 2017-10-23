@@ -1,7 +1,8 @@
 /* 
+PUNP section.
 there are 3 motors -air & water pumps and 1 fan motor
 all connected to Adafruit Motor Shield v2 ---->	http://www.adafruit.com/products/1438
-shild uses with th I2C protocol
+shild uses the I2C protocol.
 */
 
 Adafruit_MotorShield PUMPS = Adafruit_MotorShield(); // Construct the motor shield object PUMPS with the default I2C address

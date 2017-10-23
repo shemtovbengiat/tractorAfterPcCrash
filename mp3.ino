@@ -7,25 +7,28 @@ befor trying to play muisc be sure that the mp3On flag is true "isMP3On"
 musicPlayer.playFullFile("track001.ogg");
 
 // Start playing a file, then we can do stuff while waiting for it to finish
-if (! musicPlayer.startPlayingFile("track001.mp3")) {
-Serial.println("Could not open file track001.mp3");
-while (1);
-}
-Serial.println(F("Started playing"));
+*/
+/*
+if (! musicPlayer.startPlayingFile("track001.mp3"))
+	{
+	Serial.println("Could not open file track001.mp3");
+	while (1);
+	}
+	Serial.println(F("Started playing"));
 
-while (musicPlayer.playingMusic) {
-// file is now playing in the 'background' so now's a good time
-// to do something else like handling LEDs or buttons :)
-Serial.print(".");
-delay(1000);
-}
-Serial.println("Done playing music");
-}*/
+	while (musicPlayer.playingMusic) {
+		// file is now playing in the 'background' so now's a good time
+		// to do something else like handling LEDs or buttons :)
+		Serial.print(".");
+//		delay(1000);
+		}
+	Serial.println("Done playing music");
+*/
 
 Adafruit_VS1053_FilePlayer musicPlayer = Adafruit_VS1053_FilePlayer(SHIELD_RESET, SHIELD_CS, SHIELD_DCS, DREQ, CARDCS);
 
 
-void printDirectory(File dir, int numTabs);
+//void printDirectory(File dir, int numTabs)
 
 
 
@@ -43,8 +46,8 @@ void mp3Ini() {
 		return;
 	}
 
-#if defined(DEBUG)
-	Serial.println("VS1053 found");
+#if defined (DEBUG)
+	//Serial.println("VS1053 found");
 #endif
 
 
@@ -71,7 +74,7 @@ void mp3Ini() {
 		musicPlayer.useInterrupt(VS1053_FILEPLAYER_TIMER0_INT);  ///   check with mickel  no to use TIMER0_INT  !!!!!!!!!!!!!!!!!!!!!!
 	}//---END of mp# inisilaztion routine
 
-}
+
 
 /*
 this is to start a sound,  give it the path to the file
@@ -92,7 +95,11 @@ void playSound (char* path)
     }
 
 
-
+void nextSong(int i) {
+	char str[12];
+	sprintf(str, "songs/%d.mp3", i);
+	playSound(str);
+}
 
 
 
@@ -129,7 +136,7 @@ void printDirectory(File dir, int numTabs) {
 			// files have sizes, directories do not
 			Serial.print("\t\t");
 			Serial.println(entry.size(), DEC);
-		}
-		entry.close();
-	}
-}
+			songCount++;
+			}
+			entry.close();
+	}// - END printdirectory routine 

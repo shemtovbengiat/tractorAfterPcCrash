@@ -14,8 +14,8 @@
 #define DREQ          20      // VS1053 Data request, ideally an Interrupt pin
 
 // ---  O U T P U T S   ----------
-#define valve1        A1      // LED 1+2 pin  // blinking motor valve pin number 
-#define valve2        A2             
+#define valve1        A2      // LED 1+2 pin  // blinking motor valve pin number 
+#define valve2        A1             
 
 #define neoMotorPin    44     //data pin for engine NeoPixel   - PWM
 #define neoHeadPin     45     //data pin for head light NeoPixel- PWM
@@ -62,8 +62,10 @@ void pumps(bool pumpsOn, int pumpsFast);
 void action();
 void turnIni();
 void turnLights(bool turnLOn, bool turnROn, bool turnFast); 
-void turnLights(bool L, bool R);
+void turnLAction(bool L, bool R);
+void lightValves();
 void neopixleIni();
+void nextSong(int i);
 
 void driveIni();
 void Drive(int l, int r, int driveSpeed);

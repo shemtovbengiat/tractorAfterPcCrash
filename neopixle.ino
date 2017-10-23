@@ -5,7 +5,7 @@ There are 5 strips of neopixles in the tractor:
 3. 2 rings "small" 3 cm diameter as rearlights in the back of the tractor, 8 leds each as -- backNeopixles
 4. 1 ring "huge" 10 cm diameter as exhaust light on top of the motor cover of the tractor as -- exhaustNeopixles
 5. 1 strip ??50  leds in the interior of the cabine tractor for ambient atmoshere - interiorlNeopixle
-*/
+
 
 #define neoMotorNo       42     //number of leds for engine NeoPixel 
 #define neoHeadNo        12     //number of leds for head light NeoPixel
@@ -29,5 +29,5 @@ Adafruit_NeoPixel neoExhaost = Adafruit_NeoPixel(neoExhaostNo, neoExhaostPin, NE
   neoInterior.begin();
   neoExhaost.begin();
   
-}//---END of INITIALIZATION routine
-
+}//-END of INITIALIZATION routine
+*/
