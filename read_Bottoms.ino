@@ -45,7 +45,7 @@ void readBottoms ()         // ----  Called from whithin LOOP routine
 	btmStartState = digitalRead(btmStart);
 	if (btmStartState != lastBtmStartState)
 	{
-		if (btmStartState == LOW && (lastTime + 100) < millis())
+		if (btmStartState == LOW && (lastTime + 50) < millis())
 		{
 			lastTime = millis();
 			Serial.println(" [ START  ] ");

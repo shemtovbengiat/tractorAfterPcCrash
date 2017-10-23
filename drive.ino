@@ -29,35 +29,33 @@ void driveIni()
   pinMode(rdrmEn2,OUTPUT);
   pinMode(rdrmPwm1,OUTPUT);
   pinMode(rdrmPwm2,OUTPUT);
-  
-  pinMode(ldrmEn1,LOW);           // Varify motor stops at startup 
-  pinMode(ldrmEn2,LOW);
-  pinMode(rdrmEn1,LOW);
-  pinMode(rdrmEn2,LOW);
+  digitalWrite(ldrmEn1,0);           // Varify motor stops at startup 
+  digitalWrite(ldrmEn2,0);
+  digitalWrite(rdrmEn1,0);
+  digitalWrite(rdrmEn2,0);
 
-  pinMode(ldrmPwm1,LOW);
-  pinMode(ldrmPwm2,LOW);
-  pinMode(rdrmPwm1,LOW);
-  pinMode(rdrmPwm2,LOW);
+  analogWrite(ldrmPwm1,0);
+  analogWrite(ldrmPwm2,0);
+  analogWrite(rdrmPwm1,0);
+  analogWrite(rdrmPwm2,0);
 
   } //--- END of Ini routine 
 
 
 
 // ---------  drive motors routine ---------------------------------
-void Drive(int l, int r, int driveSpeed)
+void Drive(int l, int r, int driveSpeed)   //0 =stop, 1 = forward, 2 = reverse
 {
-	//0 =stop, 1 = forward, 2 = reverse
+	
 	if (l == 0)	stopMotorL;
 	else if (l == 1) driveForwardL(driveSpeed);
-	//else if (l == 2) driveReverseR(driveSpeed);
+	else if (l == 2) driveReverseR(driveSpeed);
 
-	//if (r == 0)	stopMotorR();
-	//else if (r == 1) driveForwardR(driveSpeed);
-	//else if (r == 2) driveReverseR(driveSpeed);
-
-
-
+	if (r == 0)	stopMotorR();
+	else if (r == 1) driveForwardR(driveSpeed);
+	else if (r == 2) driveReverseR(driveSpeed);
 }
+
+
 
 

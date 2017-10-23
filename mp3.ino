@@ -92,7 +92,11 @@ void playSound (char* path)
     }
 
 
-
+void nextSong(int i) {
+	char str[12];
+	sprintf(str, "songs/%d.mp3", i);
+	playSound(str);
+}
 
 
 
@@ -129,6 +133,7 @@ void printDirectory(File dir, int numTabs) {
 			// files have sizes, directories do not
 			Serial.print("\t\t");
 			Serial.println(entry.size(), DEC);
+			songCount++;
 		}
 		entry.close();
 	}

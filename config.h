@@ -64,6 +64,7 @@ void turnIni();
 void turnLights(bool turnLOn, bool turnROn, bool turnFast); 
 void turnLights(bool L, bool R);
 void neopixleIni();
+void nextSong(int i);
 
 void driveIni();
 void Drive(int l, int r, int driveSpeed);

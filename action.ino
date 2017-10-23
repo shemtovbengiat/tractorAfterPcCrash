@@ -33,11 +33,11 @@ void action()
 
 	if (motorOn == 1 && driveEnable == 1)        // verify that no driving if first set F or R and only then drive pedal push
 	{
-		//musicPlayer.sineTest(0x44, 500);    // Make a tone to indicate VS1053 is working
+		//playSound.sineTest(0x44, 500);    // Make a tone to indicate VS1053 is working
 		valves(1, 1);                     //rpm  = fast
 		pumps(1, 1);                           //rpm  = fast
 		//motorNeopixle(1,0);                 //rate  = fast
-		//playSound("TRACK03.MP3");          // High  rpm sound 
+		playSound("TRACK03.MP3");          // High  rpm sound 
 		if (drivePedal == 1) {
 			if (forwardOn == 1) {
 					Drive(1, 1, driveSpeed);
@@ -74,7 +74,7 @@ void action()
 		turnROn == 0;
 	return;
 	}
-/*
+
 	if ((turnLOn == 1 || turnROn == 1) && driveEnable == 1)
 	{
 		turnLights(1, 1, 1);                        // both l and r together - fat warning lights
@@ -82,13 +82,13 @@ void action()
 	}
 	else if ((turnLOn == 1 && turnROn == 0) && motorOn == 0) turnLights(0, 0, 0);
 	else if ((turnLOn == 0 && turnROn == 1) && motorOn == 0) turnLights(0, 0, 0);
-*/
+
 }//---END of ACTION routine
 
 
 /* -----------DRIVE section activating the drive motors---------------
 1. If motor not started then push START to activate motorON=1
-2. Motor activated, select forward or reverse on the joystick. forwardOn=1 or reverseOn=
+2. Motor activated, select forward or reverse on the joystick. forwardOn=1 or reverseOn=1
 3. push DRIVE PEDAL to drive frw. or rev. pedalOn = 1
 */
  

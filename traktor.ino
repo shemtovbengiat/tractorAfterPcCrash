@@ -50,6 +50,8 @@ volatile bool drivingRev = 0;          // safty flag variable first joystick Rev
 volatile bool isMP3On = false;
 volatile int  driveSpeed = 100;				// to be set by the speed encoder potentiometer 0 - 255 full speed
 
+int songCount = 0;
+
 //  -------   S E T U  P      ROUTINE  -------------------
 void setup() 
 {        
