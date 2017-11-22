@@ -1,4 +1,4 @@
-/*
+/* bla bla
 main program include of libreries nesesery, declare global variables, set up individual setup routins and the in the loop routin we do:
 1. read_bottoms - whitch checks every loop all the input bottoms and sets variables accordngly.
 2. action - here we act upon "every" (ha ha..) possible variables combinations to make the tractor as close as to a modern tractor.
