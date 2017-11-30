@@ -14,18 +14,18 @@ void action()
    */
 	if (motorOn == 0)         // start bottom not pushed  yet.. - DO Nothing
 	{
-		//drive(0,0)							// stop l and r motors
+		Drive(0, 0, 0, 0);							// stop l and r motors
 		//musicPlayer.stopPlaying();          //---- האם נכון?    not right should be playSound()
 		valves(0, 0);                        // 2 leds in motor (x,y)( x- 1=blink leds 0=off,  y- 1= fast blink 0=slow blink 
 		pumps(0, 0);					    // water and air pumps fan motor (0=off 1=on slow, 1=fast 0=slow)
-		//motorNeopixle(0,0);                    // 42 neopixle on board thee motor base (1,2)(1- 1=blink  0=off, 2- 1= fast blink 0=slow blink                                
+		//motorNeopixle(0,0);                    // 42 neopixle on board the motor base (1,2)(1- 1=blink  0=off, 2- 1= fast blink 0=slow blink                                
 		//musicPlayer.sineTest(0x44, 500);       // Make a tone to indicate VS1053 is working
 		//Serial.println(isMP3On);
 	}
 
 	if (motorOn == 1 && driveEnable == 0)          //   START bottom pushed motorOn ==1
 	{
-		// drive(0,0)						// stop l and r motors
+		Drive(0, 0, 0, 0);							// stop l and r motors
 		valves(1, 0);                    //rpm 1000 = slow
 		pumps(1, 0);                          // water and air pumps fan motor (0=off 1=on slow, 1=fast 0=slow)
 		playSound("TRACK02.MP3");          // low rpm sound 1000rpm
@@ -37,11 +37,15 @@ void action()
 		valves(1, 1);                     //rpm  = fast
 		pumps(1, 1);                           //rpm  = fast
 		//motorNeopixle(1,0);                 //rate  = fast
-		playSound("TRACK03.MP3");          // High  rpm sound 
+		//playSound("TRACK03.MP3");          // High  rpm sound 
 		if (drivePedal == 1) {
-			if (forwardOn == 1) {
-					Drive(1, 1, driveSpeed);
+			if (forwardOn == 1 & reverseOn  == 0) {
+					Drive(1, 1, speedL, speedR);
 			}
+
+			if (forwardOn == 0 & reverseOn == 1) {
+				Drive(1, 1, speedL, speedR);
+		}
 		}
 	}
 
@@ -77,7 +81,7 @@ void action()
 
 	if ((turnLOn == 1 || turnROn == 1) && driveEnable == 1)
 	{
-		turnLights(1, 1, 1);                        // both l and r together - fat warning lights
+		turnLights(1, 1, 1);                        // both l and r together - fast warning lights
 		return;
 	}
 	else if ((turnLOn == 1 && turnROn == 0) && motorOn == 0) turnLights(0, 0, 0);

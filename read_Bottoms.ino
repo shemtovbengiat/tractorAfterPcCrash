@@ -130,7 +130,7 @@ void readBottoms ()         // ----  Called from whithin LOOP routine
             {
               Serial.println(" [ WHEEL SW  1  ] ");
             
-              weelBtm1Pushed = random( 1,11);         // random switch !!!!!!!!!!!!!!!!!!!!
+              steeringBtmBlack = random( 1,11);         // random switch !!!!!!!!!!!!!!!!!!!!
             }
         }
       lastWheelBtm1State = wheelBtm1State;
@@ -144,7 +144,7 @@ void readBottoms ()         // ----  Called from whithin LOOP routine
             {
               Serial.println(" [ WHEEL SW  2  ] ");
           
-              weelBtm2Pushed = random( 2,12);       // random switch !!!!!!!!!!!!!!!!!!!!
+              steeringBtmBlue = random( 2,12);       // random switch !!!!!!!!!!!!!!!!!!!!
             }
         }
       lastWheelBtm2State = wheelBtm2State;
@@ -158,7 +158,7 @@ void readBottoms ()         // ----  Called from whithin LOOP routine
             {
               Serial.println(" [ WHEEL SW  3  ] ");
              
-              weelBtm3Pushed = random( 3,13);       // random switch !!!!!!!!!!!!!!!!!!!!
+              steeringBtmRed = random( 3,13);       // random switch !!!!!!!!!!!!!!!!!!!!
             }
         }
       lastWheelBtm3State = wheelBtm3State;

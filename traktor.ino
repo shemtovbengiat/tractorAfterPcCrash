@@ -26,7 +26,7 @@ qustion to mikel
 
 #include <btsmotordriver.h>     //? ??? BTS7960MotorDriver - Version: Latest 
 
-// ----- G L O B A L    V A R I A B L E S  set at read_Bottems.ino routine  ----------------
+// ----- G L O B A L    V A R I A B L E S (switches) set at read_Bottems.ino routine  ----------------
 
 volatile bool motorOn = 0;              // 1 = start engine slow, light valves, pumps, fan and running mp3 starter sound. motorOn=0 all OFF
 volatile int  hornPushed = 0;           // each time horn bottom pushed we get random number to play MP3 another file from horn librery
@@ -39,16 +39,19 @@ volatile bool turnROn = 0;              // right signal "vinker" = 1 = blinking,
 volatile bool turnLOn = 0;              // left signal "vinker" = 1 = blinking,     0> off
 volatile bool turnFast =0;              // turnfast 1 when motor off warning light fast rate, motor ON >slow vinker rate slow
 
-volatile int  weelBtm1Pushed = 0;	   // wheel Bottom  # 1 Pushed > play random file from 1/ librery
-volatile int  weelBtm2Pushed = 0;	   // wheel Bottom  # 2 Pushed > play random file from 2/ librery
-volatile int  weelBtm3Pushed = 0;	   // wheel Bottom  # 3 Pushed > play random file from 3/ librery
+volatile int  steeringBtmBlack = 0;	   // wheel Bottom  # 1 Pushed > play random file from 1/ librery
+volatile int  steeringBtmBlue = 0;	   // wheel Bottom  # 2 Pushed > play random file from 2/ librery
+volatile int  steeringBtmRed = 0;	   // wheel Bottom  # 3 Pushed > play random file from 3/ librery
 
 volatile bool driveEnable = 0;         // safty flag variable first D or R and onlt then pedal will allow driving.!!  set at action.ino routine
 volatile bool drivingFrw = 0;          // safty flag variable first joystick Forward and onlt then pedal will allow driving FOWARD.!!  set at action.ino routine
 volatile bool drivingRev = 0;          // safty flag variable first joystick Reverse and onlt then pedal will allow driving REverse.!!  set at action.ino routine
 
 volatile bool isMP3On = false;
-volatile int  driveSpeed = 100;				// to be set by the speed encoder potentiometer 0 - 255 full speed
+
+volatile int  speedL = 0;				// 0 - 255 full speed,  to be set by the speed encoder potentiometer or the software  
+volatile int  speedOffset = 10;				// 0 - 255 full speed,  to be set by the speed encoder potentiometer or the software  
+volatile int  speedR = speedL- speedOffset;				// 0 - 255 full speed,  to be set by the speed encoder potentiometer or the software  
 
 int songCount = 0;
 
@@ -56,7 +59,7 @@ int songCount = 0;
 void setup() 
 {        
 	Serial.begin(9600);
-	randomSeed(analogRead(0));    // for random numbers not the same every other time.
+	randomSeed(analogRead(A0));    // for random numbers not the same every other time.
 
   #if defined(DEBUG)
   	Serial.println("DEBUG mode!");

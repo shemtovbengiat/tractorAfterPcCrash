@@ -12,7 +12,7 @@ Adafruit_DCMotor *waterPump = PUMPS.getMotor(3);     // Select which 'port' M2, 
 Adafruit_DCMotor *airPump = PUMPS.getMotor(4);
 
 int hiRpmMaxSpeed = 250;
-int loRpmMinSpeed = 80;
+int loRpmMinSpeed = 60;
 
 // --- Initilatziotion Routine from SETUP 
 void pumpsIni()   

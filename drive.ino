@@ -44,18 +44,63 @@ void driveIni()
 
 
 // ---------  drive motors routine ---------------------------------
-void Drive(int l, int r, int driveSpeed)   //0 =stop, 1 = forward, 2 = reverse
+void Drive(int l, int r, int speedL, int speedR)   //0 =stop, 1 = forward, 2 = reverse
 {
-	
-	if (l == 0)	stopMotorL;
-	else if (l == 1) driveForwardL(driveSpeed);
-	else if (l == 2) driveReverseR(driveSpeed);
+
+	if (l == 0)	stopMotorL();
+	else if (l == 1) driveForwardL(speedL);
+	else if (l == 2) driveReverseR(speedL);
 
 	if (r == 0)	stopMotorR();
-	else if (r == 1) driveForwardR(driveSpeed);
-	else if (r == 2) driveReverseR(driveSpeed);
+	else if (r == 1) driveForwardR(speedR);
+	else if (r == 2) driveReverseR(speedR);
+}
+
+
+void stopMotorL() {					     // stop motors
+	digitalWrite(ldrmEn1, 0);           
+	digitalWrite(ldrmEn2, 0);
+
+	analogWrite(ldrmPwm1, 0);
+	analogWrite(ldrmPwm2, 0);
+}
+void stopMotorR() {					
+	digitalWrite(rdrmEn1, 0);
+	digitalWrite(rdrmEn2, 0);
+
+	analogWrite(rdrmPwm1, 0);
+	analogWrite(rdrmPwm2, 0);
 }
 
 
 
+void driveForwardL(int pwm) {		     // forward 
+	digitalWrite(ldrmEn1, 1);
+	digitalWrite(ldrmEn2, 1);
 
+	analogWrite(ldrmPwm1, 0);
+	analogWrite(ldrmPwm2, pwm);
+}
+void driveForwardR(int pwm) {
+	digitalWrite(rdrmEn1, 1);
+	digitalWrite(rdrmEn2, 1);
+
+	analogWrite(rdrmPwm1, 0);
+	analogWrite(rdrmPwm2, pwm);
+}
+
+
+void driveReverseL(int pwm) {			// reverse
+	digitalWrite(ldrmEn1, 1);
+	digitalWrite(ldrmEn2, 1);
+
+	analogWrite(ldrmPwm1, pwm);
+	analogWrite(ldrmPwm2, 0);
+}
+void driveReverseR(int pwm) {
+	digitalWrite(rdrmEn1, 1);
+	digitalWrite(rdrmEn2, 1);
+
+	analogWrite(rdrmPwm1, pwm);
+	analogWrite(rdrmPwm2, 0);
+}

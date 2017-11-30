@@ -3,15 +3,15 @@
 */
 
 // ---  SPI ---------------------
-#define CLK           52      // SPI Clock, shared with SD card
-#define MISO          50      // Input data, from VS1053/SD card
-#define MOSI          51      // Output data, to VS1053/SD card
+#define CLK           52      // SPI Clock, shared with SD card - mp3 13
+#define MISO          50      // Input data, from VS1053/SD card - mp3 12
+#define MOSI          51      // Output data, to VS1053/SD card - mp3 11
 // ---- MP3 shield --------------
-#define SHIELD_RESET  43      // VS1053 reset pin (unused!)
-#define SHIELD_CS     53      // VS1053 chip select pin (output)
-#define SHIELD_DCS    40      // VS1053 Data/command select pin (output)
-#define CARDCS        49      // Card chip select pin
-#define DREQ          20      // VS1053 Data request, ideally an Interrupt pin
+#define SHIELD_RESET  43      // VS1053 reset pin (unused!) mp3 - mp3  8
+#define SHIELD_CS     53      // VS1053 chip select pin (output)- mp3  6
+#define SHIELD_DCS    40      // VS1053 Data/command select pin (output) - mp3 7
+#define CARDCS        49      // Card chip select pin - mp3 9
+#define DREQ          21      // VS1053 Data request, ideally an Interrupt pin - mp3 2
 
 // ---  O U T P U T S   ----------
 #define valve1        A1      // LED 1+2 pin  // blinking motor valve pin number 
@@ -39,14 +39,14 @@
 // ---  I N P U T S ---------------
 #define btmStart       22     // Bottom  start or second press - stop motor and all functions on the motor
 #define btmHorn        24     // Bottom  horn each press another playing of mp3 file from horn librery 
-#define wheelBtm1      26     // Bottom  1 select file to mps from path/1 librery
-#define wheelBtm2      28     // Bottom   2 select file to mps from path/2 librery  
-#define wheelBtm3      30     // Bottom    3 select file to mps from path/3 librery 
-#define btm_l          29     //push bottom left joystick
-#define btm_r          23     //push bottom right
-#define btm_u          25     //push bottom up   
-#define btm_d          27     //push bottom down 
-#define drivePedal     31     //push pedal drive frw rev.
+#define wheelBtm1      26     // Bottom  1   Black   select file to mps from path/1 librery
+#define wheelBtm2      28     // Bottom   2 Red   select file to mps from path/2 librery  
+#define wheelBtm3      30     // Bottom    3  Blue  select file to mps from path/3 librery 
+#define btm_l          33	  //push bottom left joystick
+#define btm_r          31     //push bottom right
+#define btm_u          27     //push bottom up   
+#define btm_d          29     //push bottom down 
+#define drivePedal     32     //push pedal drive frw rev.
 
 
 // --- declare All functions and XXXXIni() routines  ----
@@ -67,8 +67,13 @@ void neopixleIni();
 void nextSong(int i);
 
 void driveIni();
-void Drive(int l, int r, int driveSpeed);
+void Drive(int l, int r, int speedL, int speedR);
+
 void stopMotorL();
 void stopMotorR();
+
 void driveForwardL(int pwm);
 void driveForwardR(int pwm);
+
+void driveReverseL(int pwm);
+void driveReversR(int pwm);
