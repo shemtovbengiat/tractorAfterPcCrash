@@ -48,6 +48,11 @@ void action()
 		}
 		}
 	}
+	if(steeringBtmBlack != steeringBtmBlackOld)
+	{
+		steeringBtmBlack = steeringBtmBlackOld;
+		nextSong(steeringBtmBlack);
+	}
 
 	/* -----------TURN SIGNALS - TURN L or R signal, turn L and R togther as WARNING Light Section ---------------
 

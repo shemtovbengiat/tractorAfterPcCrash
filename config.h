@@ -48,6 +48,9 @@
 #define btm_d          29     //push bottom down 
 #define drivePedal     32     //push pedal drive frw rev.
 
+#define ON  1
+#define OFF  0
+
 
 // --- declare All functions and XXXXIni() routines  ----
 
@@ -77,3 +80,5 @@ void driveForwardR(int pwm);
 
 void driveReverseL(int pwm);
 void driveReversR(int pwm);
+void neoMotorSnakeShow();
+void stopAll();

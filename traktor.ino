@@ -43,6 +43,9 @@ volatile int  steeringBtmBlack = 0;	   // wheel Bottom  # 1 Pushed > play random
 volatile int  steeringBtmBlue = 0;	   // wheel Bottom  # 2 Pushed > play random file from 2/ librery
 volatile int  steeringBtmRed = 0;	   // wheel Bottom  # 3 Pushed > play random file from 3/ librery
 
+// this is for helping us to didtect changes in streenig Btm state.
+int steeringBtmBlackOld = 0;
+
 volatile bool driveEnable = 0;         // safty flag variable first D or R and onlt then pedal will allow driving.!!  set at action.ino routine
 volatile bool drivingFrw = 0;          // safty flag variable first joystick Forward and onlt then pedal will allow driving FOWARD.!!  set at action.ino routine
 volatile bool drivingRev = 0;          // safty flag variable first joystick Reverse and onlt then pedal will allow driving REverse.!!  set at action.ino routine
@@ -82,6 +85,7 @@ void loop()
 	
   readBottoms();
   action();
+  runNewPixle();
 
 }//---END of loop routine  -----
 

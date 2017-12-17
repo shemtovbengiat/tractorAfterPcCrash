@@ -84,8 +84,8 @@ void playSound (char* path)
       #endif
     	// Start playing a file, then we can do stuff while waiting for it to finish
     	if (!musicPlayer.startPlayingFile(path)) {
-    		Serial.println("Could not open file track02.mp3");
-    		while (1);                                          //  stucks the program!!!! need RESET
+    		Serial.print("Could not open file:");
+    		Serial.println(path);
     	}
     	Serial.println("Started playing");
      return;
@@ -95,6 +95,12 @@ void playSound (char* path)
 void nextSong(int i) {
 	char str[12];
 	sprintf(str, "songs/%d.mp3", i);
+	playSound(str);
+}
+
+void nextVocal(int i) {
+	char str[12];
+	sprintf(str, "vocal/%d.mp3", i);
 	playSound(str);
 }
 

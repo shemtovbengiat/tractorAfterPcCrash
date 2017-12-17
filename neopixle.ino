@@ -12,16 +12,17 @@ There are 5 strips of neopixles in the tractor:
 #define neoBackNo         8     //number of leds for back light  NeoPixel
 #define neoInteriorNo    50     //number of leds for interior NeoPixel
 #define neoExhaostNo     16     //number of leds for exhaost NeoPixel ring 
-
-// ----------------   neopixle INITIALIZATION routine  -----------------
-void neopixleIni()
-{
 // constructing 5 classs for each neopixle
 Adafruit_NeoPixel neoMotor = Adafruit_NeoPixel(neoMotorNo, neoMotorPin, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel neoHead = Adafruit_NeoPixel(neoHeadNo, neoHeadPin, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel neoBack = Adafruit_NeoPixel(neoBackNo, neoBackPin, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel neoInterior = Adafruit_NeoPixel(neoInteriorNo, neoInteriorPin, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel neoExhaost = Adafruit_NeoPixel(neoExhaostNo, neoExhaostPin, NEO_GRB + NEO_KHZ800);
+int i = 0;
+
+// ----------------   neopixle INITIALIZATION routine  -----------------
+void neopixleIni()
+{
 
   neoMotor.begin();           // initilaze the 5 classe
   neoHead.begin();
@@ -30,4 +31,67 @@ Adafruit_NeoPixel neoExhaost = Adafruit_NeoPixel(neoExhaostNo, neoExhaostPin, NE
   neoExhaost.begin();
   
 }//---END of INITIALIZATION routine
+
+
+
+void runNewPixle()
+{
+	if (motorOn == ON)
+	{
+		neoMotorSnakeShow();
+	}
+	else
+	{
+		stopAll();
+	}
+}
+
+
+
+void neoMotorSnakeShow()
+{
+	 if(i< neoMotor.numPixels() ){
+		neoMotor.setPixelColor(i, 255, 0, 0);
+		neoMotor.show();
+		i++;
+	}
+		 else
+		 {
+			 i = 0;
+		 }
+}
+
+void neoMotorStop()
+{
+	for (int i = 0; i< neoMotor.numPixels(); i++)
+	{
+		neoMotor.setPixelColor(i, 0, 0, 0);
+	}
+	neoMotor.show();
+}
+
+void neoHeadSnakeShow()
+{
+	for (int i = 0; i< neoMotor.numPixels(); i++)
+	{
+		neoMotor.setPixelColor(i, 255, 0, 0);
+		neoMotor.show();
+	}
+}
+
+void neoHeadStop()
+{
+	for (int i = 0; i< neoMotor.numPixels(); i++)
+	{
+		neoMotor.setPixelColor(i, 0, 0, 0);
+	}
+	neoMotor.show();
+}
+
+void stopAll()
+{
+	neoHeadStop();
+	neoMotorStop();
+}
+
 
